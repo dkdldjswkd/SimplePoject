@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="WndProc.cpp">
+      <Filter>winAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BinaryTree.h" />
+    <ClInclude Include="stdafx.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="WndProc.h">
+      <Filter>winAPI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="레드블랙트리_삭제.txt">
+      <Filter>Others</Filter>
+    </Text>
+    <Text Include="레드블랙트리_구조 및 삽입.txt">
+      <Filter>Others</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Default">
+      <UniqueIdentifier>{42c082ba-90a6-4a53-9d1b-959e0f8ffe94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="winAPI">
+      <UniqueIdentifier>{f0398e8c-b651-4c3c-af15-fcec322decd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Others">
+      <UniqueIdentifier>{7fd2f70c-e924-4eaf-b0fd-324e5c831f36}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

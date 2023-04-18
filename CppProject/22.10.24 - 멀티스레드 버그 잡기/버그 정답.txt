@@ -1,0 +1,17 @@
+1. g_szDebug = new WCHAR[40];
+
+2. NewSession에서 동적 할당받은 PLAYER 메모리를 초과해서 밀어버림
+
+3. DeleteSession, PlayerList의 원소 삭제 시 Unlock을 해주지 않으므로 데드락에 빠짐.
+
+4. FindSessionList, Session 찾을 시 Unlock을 해주지 않으므로 데드락에 빠짐.
+
+5. 컨텐츠 업데이트
+	for ( int iCnt = 0; iCnt <= 3; iCnt++ )
+	{
+		pPlayer->Content[iCnt]++;
+	}
+
+6. g_hExitThreadEvent가 auto reset
+
+7. Release, iter 정리

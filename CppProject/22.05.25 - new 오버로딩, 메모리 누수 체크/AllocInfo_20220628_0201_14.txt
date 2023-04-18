@@ -1,0 +1,1 @@
+LEAK    !! [0x000001BFB53B2470] [     44] C:\Users\carpk\OneDrive\Desktop\Procademy\02_Solution\과제\과제_05.25\소스.cpp : 28 

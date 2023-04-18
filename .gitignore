@@ -1,0 +1,10 @@
+**/Debug/
+**/Release/
+**/x64/
+**/x86/
+**/*.obj
+**/*.idb
+**/*.log
+**/*.ipch
+**/*.dump
+**/*.pack

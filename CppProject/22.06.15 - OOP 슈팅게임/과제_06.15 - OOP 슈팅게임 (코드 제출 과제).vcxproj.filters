@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="DataFileIO.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenBuffer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="j_new.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor.h">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="DataFileIO.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenBuffer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="j_list.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="j_new.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="GamaData\_슈팅게임 만들기 기본 틀.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\StageInfo.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\Stage1.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\Stage2.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\Stage3.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\Clear.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\Enemy1.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\Enemy2.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\Enemy3.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\EnemyInfo.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\TITLE.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+    <Text Include="GamaData\GAMEOVER.txt">
+      <Filter>GameResource</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{e8f4ee5b-ced4-4a08-b900-d984505b194d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{ebe67127-dc59-4ad6-acfb-c380bd7f4b85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{f2213cfe-2bb9-4492-8b82-403f8e54591f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default">
+      <UniqueIdentifier>{58d75cf4-dc79-4fb3-9ab2-90347cffc204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic">
+      <UniqueIdentifier>{4c63de98-cc2d-406a-aa37-0b2028a0e833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{7a71f04c-cf9c-4162-913b-8fc0e1615d47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameResource">
+      <UniqueIdentifier>{85ea489a-1307-41a5-9230-bead77889489}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\03_프로카데미 프린트\과제\08 OOP 텍스트 슈팅게임 만들기.pdf">
+      <Filter>GameResource</Filter>
+    </None>
+  </ItemGroup>
+</Project>

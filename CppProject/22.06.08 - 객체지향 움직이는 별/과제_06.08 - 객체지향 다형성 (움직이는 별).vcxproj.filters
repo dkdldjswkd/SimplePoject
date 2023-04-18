@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="소스.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{83e9f654-1b97-4c3e-9ff3-3f849bbcf44e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="1. 클래스 상속_별움직이는 프로그램.txt">
+      <Filter>Resource</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="2. ObjectStar.exe">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="07 객체지향 별 움직이기.pdf" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="define.h">
+      <Filter>Define</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Define</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Define</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Define</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_Debug.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Define">
+      <UniqueIdentifier>{4c96016f-3b76-4005-9291-72add4c8dd9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Others">
+      <UniqueIdentifier>{0155462d-f968-4400-bbb6-353fb4e11599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Default">
+      <UniqueIdentifier>{0a3fa578-e65b-4f22-b484-d6a5c013c527}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>Others</Filter>
+    </Text>
+    <Text Include="스레드 응용 및 디버깅.txt">
+      <Filter>Others</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

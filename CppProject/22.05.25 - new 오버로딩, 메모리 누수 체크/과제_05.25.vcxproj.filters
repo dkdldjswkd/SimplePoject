@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="소스.cpp" />
+    <ClCompile Include="my_new.cpp">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="j_list.cpp">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="j_new.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="memory">
+      <UniqueIdentifier>{29c7735d-db95-4ace-8d2f-03d9691aed10}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="my_new.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="j_list.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="j_new.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="[프로카데미] new 오버로딩 메모리 누수 탐지기.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="06 new 오버로딩, 메모리 누수 체크.pdf" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenBuffer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="DataFileIO.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>GameLogic</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenBuffer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="DataFileIO.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>GameLogic</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Default">
+      <UniqueIdentifier>{d3b2d6d9-19f4-4d2a-af9b-38caa466dc9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{31035657-50d3-484e-afe7-5c1f94e250f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLogic">
+      <UniqueIdentifier>{f37c5eb8-4921-4ba0-a6f5-82cc5cecca76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameData">
+      <UniqueIdentifier>{0d25e925-f0a1-45ee-b09f-7104077f6733}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="GamaData\_슈팅게임 만들기 기본 틀.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\Clear.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\Enemy1.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\Enemy2.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\Enemy3.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\EnemyInfo.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\GAMEOVER.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\Stage1.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\Stage2.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\Stage3.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\StageInfo.txt">
+      <Filter>GameData</Filter>
+    </Text>
+    <Text Include="GamaData\TITLE.txt">
+      <Filter>GameData</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
