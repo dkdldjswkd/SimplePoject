@@ -11,9 +11,9 @@
 
 using namespace std;
 
-SOCKET listen_sock = INVALID_SOCKET;
+SOCKET listenSock = INVALID_SOCKET;
 sockaddr_in server_addr;
-unordered_map<SOCKET, Session*>			session_map;
+unordered_map<SOCKET, Session*>			sessionMap;
 unordered_map<SESSION_ID, Character*>	character_map;
 
 queue<Session*> disconnect_queue;
@@ -54,7 +54,7 @@ void Network::Disconnect_Session() {
 		SectorFunc::Erase_Sectors(p_character);
 		SCPacket::Disconnect_Character(p_character);
 		character_map.erase(p_character->session_id);
-		session_map.erase(p_disconnect_session->sock);
+		sessionMap.erase(p_disconnect_session->sock);
 		closesocket(p_disconnect_session->sock);
 
 		pool_character.Free(p_character);			/* 카운팅 */ character_count--;
@@ -73,8 +73,8 @@ bool Network::StartUp() {
 	//------------------------------
 	// socket()
 	//------------------------------
-	listen_sock = socket(AF_INET, SOCK_STREAM, 0);
-	if (listen_sock == INVALID_SOCKET)
+	listenSock = socket(AF_INET, SOCK_STREAM, 0);
+	if (listenSock == INVALID_SOCKET)
 		throw;
 
 	//------------------------------
@@ -88,27 +88,27 @@ bool Network::StartUp() {
 	//------------------------------
 	// bind()
 	//------------------------------
-	if (SOCKET_ERROR == bind(listen_sock, (sockaddr*)&server_addr, sizeof(server_addr)))
+	if (SOCKET_ERROR == bind(listenSock, (sockaddr*)&server_addr, sizeof(server_addr)))
 		throw;
 
 	//------------------------------
 	// set sock opt
 	//------------------------------
 	LINGER opt = { 1, 0 };
-	if (0 != setsockopt(listen_sock, SOL_SOCKET, SO_LINGER, (char*)&opt, sizeof(opt)))
+	if (0 != setsockopt(listenSock, SOL_SOCKET, SO_LINGER, (char*)&opt, sizeof(opt)))
 		throw;
 
 	//------------------------------
 	// set I/O mode
 	//------------------------------
 	u_long io_mode = 1;
-	if (0 != ioctlsocket(listen_sock, FIONBIO, &io_mode))
+	if (0 != ioctlsocket(listenSock, FIONBIO, &io_mode))
 		throw;
 
 	//------------------------------
 	// listen()
 	//------------------------------
-	if (SOCKET_ERROR == listen(listen_sock, SOMAXCONN))
+	if (SOCKET_ERROR == listen(listenSock, SOMAXCONN))
 		throw;
 
 	return true;
@@ -120,14 +120,14 @@ bool Network::CleanUp() {
 	return true;
 }
 
-void Network::Process_NetIO() {
+void Network::ProcessNetIO() {
 	//--------------------------------
 	// 변수 세팅
 	//--------------------------------
 	Session* p_session;
 
-	SOCKET sessionTable_sock[FD_SETSIZE] = { INVALID_SOCKET, };
-	int sock_count = 0;
+	SOCKET sessionSockArr[FD_SETSIZE] = { INVALID_SOCKET, };
+	int sockCount = 0;
 
 	FD_SET read_set;
 	FD_SET write_set;
@@ -138,15 +138,16 @@ void Network::Process_NetIO() {
 	//--------------------------------
 	// 리슨 소켓 넣기
 	//--------------------------------
-	FD_SET(listen_sock, &read_set);
-	sessionTable_sock[sock_count++] = listen_sock;
+	FD_SET(listenSock, &read_set);
+	sessionSockArr[sockCount++] = listenSock;
 
 	//--------------------------------
 	// 연결중인 모든 호스트의 socket을 체크
 	//--------------------------------
-	for (auto session_iter = session_map.begin(); session_iter != session_map.end(); session_iter++) {
-		p_session = session_iter->second;
-		sessionTable_sock[sock_count] = p_session->sock;
+	auto endIter = sessionMap.end();
+	for (auto sessionIter = sessionMap.begin(); sessionIter != endIter; ++sessionIter) {
+		p_session = sessionIter->second;
+		sessionSockArr[sockCount] = p_session->sock;
 
 		//--------------------------------
 		// read/write set 등록
@@ -154,70 +155,67 @@ void Network::Process_NetIO() {
 		FD_SET(p_session->sock, &read_set);
 		if (p_session->send_buf.Get_UseSize() > 0)
 			FD_SET(p_session->sock, &write_set);
-		sock_count++;
+		sockCount++;
 
 		//--------------------------------
 		// select 최대치 도달, select 호출 후 정리
 		//--------------------------------
-		if (FD_SETSIZE <= sock_count) {
-			Select_Socket(sessionTable_sock, &read_set, &write_set);
+		if (FD_SETSIZE <= sockCount) {
+			SelectSocket(sessionSockArr, &read_set, &write_set);
 
 			FD_ZERO(&read_set);
 			FD_ZERO(&write_set);
-			memset(sessionTable_sock, INVALID_SOCKET, sizeof(SOCKET) * FD_SETSIZE);
+			memset(sessionSockArr, INVALID_SOCKET, sizeof(SOCKET) * FD_SETSIZE);
 
-			FD_SET(listen_sock, &read_set);
-			sock_count = 1;
+			FD_SET(listenSock, &read_set);
+			sockCount = 1;
 		}
 	}
 
-	if (sock_count > 0) {
-		Select_Socket(sessionTable_sock, &read_set, &write_set);
+	if (sockCount > 0) {
+		SelectSocket(sessionSockArr, &read_set, &write_set);
 	}
 }
 
-void Network::Select_Socket(SOCKET* p_SocketTable, FD_SET* p_ReadSet, FD_SET* p_WriteSet) {
-	bool bProcFlag;
+void Network::SelectSocket(SOCKET* p_SocketTable, FD_SET* p_ReadSet, FD_SET* p_WriteSet) {
+	bool procFlag;
 
 	timeval	t;
 	t.tv_sec = 0;
 	t.tv_usec = 0;
-	auto ret_select = select(0, p_ReadSet, p_WriteSet, 0, &t);
+	auto retSelect = select(0, p_ReadSet, p_WriteSet, 0, &t);
 
-	if (0 < ret_select) {
-		for (int i = 0; 0 < ret_select && i < FD_SETSIZE; i++) {
-			bProcFlag = true;
+	if (0 < retSelect) {
+		for (int i = 0; 0 < retSelect && i < FD_SETSIZE; i++) {
+			procFlag = true;
 			if (p_SocketTable[i] == INVALID_SOCKET)
 				continue;
 
 			if (FD_ISSET(p_SocketTable[i], p_WriteSet)) {
-				--ret_select;
-				bProcFlag = Proc_Send(p_SocketTable[i]);
+				--retSelect;
+				procFlag = ProcSend(p_SocketTable[i]);
 			}
 
 			if (FD_ISSET(p_SocketTable[i], p_ReadSet)) {
-				--ret_select;
+				--retSelect;
 
-				if (bProcFlag) {
-					if (p_SocketTable[i] == listen_sock) {
-						Proc_Accept();
+				if (procFlag) {
+					if (p_SocketTable[i] == listenSock) {
+						ProcAccept();
 					}
-					else if (p_SocketTable[i] != listen_sock) {
-						Proc_Recv(p_SocketTable[i]);
+					else if (p_SocketTable[i] != listenSock) {
+						ProcRecv(p_SocketTable[i]);
 					}
 				}
 			}
 		}
 	}
-	//else if (ret_select == SOCKET_ERROR) {
-	//	//Error(L"select() error");
-	//}
 }
 
-void Network::Proc_Recv(SOCKET sock) {
+void Network::ProcRecv(SOCKET sock) {
 	Session* p_session;
 
-	p_session = session_map.find(sock)->second;
+	p_session = sessionMap.find(sock)->second;
 	p_session->last_recvTime = timeGetTime();
 
 	// Recv Buf FULL *크리티컬
@@ -269,9 +267,9 @@ void Network::Proc_Recv(SOCKET sock) {
 }
 
 extern int total_loop;
-bool Network::Proc_Send(SOCKET sock) {
+bool Network::ProcSend(SOCKET sock) {
 	char tmp_buf[BUF_SIZE];
-	Session* p_session = session_map.find(sock)->second;
+	Session* p_session = sessionMap.find(sock)->second;
 
 	auto ret_send = send(sock, p_session->send_buf.Get_ReadPos(), p_session->send_buf.Direct_DequeueSize(), NULL); // (처음시도하는 코드 버그 주의)
 
@@ -298,14 +296,14 @@ bool Network::Proc_Send(SOCKET sock) {
 }
 
 extern int total_loop;
-bool Network::Proc_Accept() {
+bool Network::ProcAccept() {
 	sockaddr_in client_addr;
 	int addr_len = sizeof(client_addr);
 
 	//------------------------------
 	// Accept
 	//------------------------------
-	auto accept_sock = accept(listen_sock, (sockaddr*)&client_addr, &addr_len);
+	auto accept_sock = accept(listenSock, (sockaddr*)&client_addr, &addr_len);
 	if (accept_sock == INVALID_SOCKET) {
 		int err_no = WSAGetLastError();
 
@@ -328,7 +326,7 @@ bool Network::Proc_Accept() {
 	Session* p_accept_session = pool_session.Alloc(); /* 카운팅 */ session_count++;
 	p_accept_session->Clear(total_loop);
 	p_accept_session->Set(accept_sock, Get_SessionID(), timeGetTime());
-	session_map.insert({ accept_sock, p_accept_session });
+	sessionMap.insert({ accept_sock, p_accept_session });
 
 	Character* p_accept_character = pool_character.Alloc(); /* 카운팅 */ character_count++;
 	p_accept_character->Clear();

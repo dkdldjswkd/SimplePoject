@@ -362,7 +362,7 @@ void Send_Proc(session_id id) {
 	if (ret_send == SOCKET_ERROR) {
 		switch (WSAGetLastError()) {
 			case WSAECONNRESET: {
-				emplace_discon777nect_queue(id);
+				emplace_disconnect_queue(id);
 				break;
 			}
 

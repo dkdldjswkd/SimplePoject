@@ -8,19 +8,19 @@
 struct Character;
 struct SectorAround;
 
-extern SOCKET listen_sock;
-extern std::unordered_map<SOCKET, Session*>			session_map;
+extern SOCKET listenSock;
+extern std::unordered_map<SOCKET, Session*>			sessionMap;
 extern std::unordered_map<SESSION_ID, Character*>	character_map;
 
 // Network
 struct Network{
 	static bool StartUp();
 	static bool CleanUp();
-	static void Process_NetIO();
-	static void Select_Socket(SOCKET* p_SocketTable, FD_SET* p_ReadSet, FD_SET* p_WriteSet);
-	static void Proc_Recv(SOCKET sock);
-	static bool Proc_Send(SOCKET sock);
-	static bool Proc_Accept();
+	static void ProcessNetIO();
+	static void SelectSocket(SOCKET* p_SocketTable, FD_SET* p_ReadSet, FD_SET* p_WriteSet);
+	static void ProcRecv(SOCKET sock);
+	static bool ProcSend(SOCKET sock);
+	static bool ProcAccept();
 	static void Disconnect_Session();
 };
 
