@@ -14,13 +14,11 @@ C++와 네트워크 관련 개념을 공부하며 구현한 프로젝트 모음�
 
 ### 3. **JPS (Jump Point Search)**
    A* 알고리즘을 개선한 JPS 알고리즘을 구현한 예제입니다.  
-   A*는 인접한 모든 지점을 Priority Queue에 추가하는 반면, JPS는 충돌 정보를 기반으로 중요한 분기점만 Priority Queue에 추가하여 탐색 거리가 멀수록 A*보다 더 빠른 경로 탐색 성능을 보입니다.  
-<video width="640" height="360" controls>
-  <source src="https://raw.githubusercontent.com/dkdldjswkd/SimplePoject/main/CppProject/22.09.05%20-%20JPS/JPS.mp4" type="video/mp4">
-</video>
+   A* 는 인접한 모든 지점을 Priority Queue에 추가하는 반면, JPS는 충돌 정보를 기반으로 중요한 분기점만 Priority Queue에 추가하여 탐색 거리가 멀수록 A* 보다 더 빠른 경로 탐색 성능을 보입니다.  
+[![Video Title](https://img.youtube.com/vi/sMQnVRWcX2Y/0.jpg)](https://youtu.be/sMQnVRWcX2Y)
 
 ### 4. **LockFreeStack (락프리 스택)**
-   락프리 스택을 구현하여 다중 스레드 환경에서도 성능 저하 없이 효율적으로 동작하는 자료구조를 제공합니다. 이를 통해 메모리 할당 경합을 최소화하고, 안정적인 멀티스레딩 환경을 구축할 수 있습니다.
+   멀티 스레드 환경에서 락을 사용하지 않고 사용할 수 있는 락프리 스택을 구현했습니다.
 
 ### 5. **MMO TCPFighter Server**
    `select` I/O 모델을 사용한 간단한 MMO 프로젝트입니다.
