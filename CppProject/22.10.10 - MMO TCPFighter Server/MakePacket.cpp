@@ -3,9 +3,7 @@
 #include "Protocol.h"
 #include "Define.h"
 #include "Log.h"
-
-#include "../../J_LIB/ProtocolBuffer/ProtocolBuffer.h"
-#pragma comment(lib, "../../J_LIB/ProtocolBuffer/ProtocolBuffer.lib")
+#include "ProtocolBuffer.h"
 
 void MakePacket_CREATE_MY_CHARACTER(ProtocolBuffer* p_packet, SESSION_ID session_id, DIR dir, short x, short y, char hp){
 	//--------------------------------

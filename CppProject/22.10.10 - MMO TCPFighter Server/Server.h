@@ -2,8 +2,8 @@
 #include <WinSock2.h>
 #include <unordered_map>
 #include "Session.h"
-#include "../../J_LIB/ObjectPool/ObjectPool.h"
-#include "../../J_LIB/ProtocolBuffer/ProtocolBuffer.h"
+#include "ObjectPool.h"
+#include "ProtocolBuffer.h"
 
 struct Character;
 struct SectorAround;

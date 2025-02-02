@@ -7,7 +7,7 @@
 #include "Define.h"
 #include "Protocol.h"
 #include "Log.h"
-#pragma comment(lib, "../../J_LIB/ProtocolBuffer/ProtocolBuffer.lib")
+#include "ObjectPool.h"
 
 using namespace std;
 
@@ -153,7 +153,7 @@ void Network::ProcessNetIO() {
 		// read/write set 등록
 		//--------------------------------
 		FD_SET(p_session->sock, &read_set);
-		if (p_session->send_buf.Get_UseSize() > 0)
+		if (p_session->send_buf.GetUseSize() > 0)
 			FD_SET(p_session->sock, &write_set);
 		sockCount++;
 
@@ -223,7 +223,7 @@ void Network::ProcRecv(SOCKET sock) {
 		Log::Error("RECV BUF FULL : session_id(%d) ", p_session->session_id);
 		Input_DisconnectQ(p_session, "Recv buf full");
 	}
-	auto recv_size = recv(p_session->sock, p_session->recv_buf.Get_WritePos(), p_session->recv_buf.Direct_EnqueueSize(), 0);	// (처음시도하는 코드 버그 주의)
+	auto recv_size = recv(p_session->sock, p_session->recv_buf.GetWritePos(), p_session->recv_buf.DirectEnqueueSize(), 0);	// (처음시도하는 코드 버그 주의)
 
 	// FIN 수신
 	if (recv_size == 0) {
@@ -249,7 +249,7 @@ void Network::ProcRecv(SOCKET sock) {
 	}
 
 	if (0 < recv_size) {
-		p_session->recv_buf.Move_Rear(recv_size);
+		p_session->recv_buf.MoveRear(recv_size);
 		for (;;) {
 			auto ret = Complete_RecvPacket(p_session);
 
@@ -271,7 +271,8 @@ bool Network::ProcSend(SOCKET sock) {
 	char tmp_buf[BUF_SIZE];
 	Session* p_session = sessionMap.find(sock)->second;
 
-	auto ret_send = send(sock, p_session->send_buf.Get_ReadPos(), p_session->send_buf.Direct_DequeueSize(), NULL); // (처음시도하는 코드 버그 주의)
+	auto ret_send = send(sock, p_session->send_buf.GetReadPos(), p_session->send_buf.DirectDequeueSize(), NULL); // (처음시도하는 코드 버그 주의)
+
 
 	// Send Error
 	if (ret_send == SOCKET_ERROR) {
@@ -291,7 +292,7 @@ bool Network::ProcSend(SOCKET sock) {
 	}
 
 	// Send 성공
-	p_session->send_buf.Move_Front(ret_send);
+	p_session->send_buf.MoveFront(ret_send);
 	return true;
 }
 
@@ -1551,7 +1552,7 @@ int Complete_RecvPacket(Session* p_session) {
 	PACKET_HEADER packet_header;
 	int iRecvQSize;
 
-	iRecvQSize = p_session->recv_buf.Get_UseSize();
+	iRecvQSize = p_session->recv_buf.GetUseSize();
 
 	// 패킷헤더 이상인지 검사
 	if (sizeof(packet_header) > iRecvQSize)
@@ -1565,7 +1566,7 @@ int Complete_RecvPacket(Session* p_session) {
 	if (iRecvQSize < packet_header.bySize + sizeof(packet_header))
 		return 1;
 
-	p_session->recv_buf.Move_Front(sizeof(packet_header));
+	p_session->recv_buf.MoveFront(sizeof(packet_header));
 
 	ProtocolBuffer& cs_payload = *pool_protocolBuf.Alloc();
 	cs_payload.Clear();

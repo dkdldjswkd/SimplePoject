@@ -1,7 +1,6 @@
 #pragma once
 #include <WinSock2.h>
-#include "../../J_LIB/RingBuffer/RingBuffer.h"
-#pragma comment(lib, "../../J_LIB/RingBuffer/RingBuffer.lib")
+#include "RingBuffer.h"
 #include <unordered_map>
 
 #define INVALID_SESSION_ID 0

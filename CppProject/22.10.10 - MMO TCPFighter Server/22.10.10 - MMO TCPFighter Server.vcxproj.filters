@@ -25,6 +25,12 @@
     <ClCompile Include="Log.cpp">
       <Filter>Util</Filter>
     </ClCompile>
+    <ClCompile Include="ProtocolBuffer.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="RingBuffer.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Default">
@@ -75,6 +81,15 @@
       <Filter>Default</Filter>
     </ClInclude>
     <ClInclude Include="Log.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolBuffer.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="RingBuffer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
       <Filter>Util</Filter>
     </ClInclude>
   </ItemGroup>
