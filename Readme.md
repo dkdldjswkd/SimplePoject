@@ -22,4 +22,5 @@ C++와 네트워크 관련 개념을 공부하며 구현한 프로젝트 모음�
    멀티 스레드 환경에서 락을 사용하지 않고 사용할 수 있는 락프리 스택을 구현했습니다.
 
 ### 5. **MMO TCPFighter Server**
-   `select` I/O 모델을 사용한 간단한 MMO 프로젝트입니다.
+   `select` I/O 모델을 사용한 간단한 MMO 프로젝트입니다.  
+[![Video Title](https://img.youtube.com/vi/HaJeUk6SPZY/0.jpg)](https://youtu.be/HaJeUk6SPZY)
